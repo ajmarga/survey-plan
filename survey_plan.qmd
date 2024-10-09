@@ -1,0 +1,447 @@
+---
+title: "BioSync Wellness" 
+subtitle: "Survey Plan"
+author: Abdul, Ben, Jade and Katherine
+date: today
+format:
+  html:
+    toc: true
+    theme: superhero
+---
+
+```{r}
+#| label: setup
+#| include: false
+
+# Load libraries and settings here
+library(tidyverse)
+library(here)
+library(surveydown)
+
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  comment = "#>",
+  fig.path = "figs/", # Folder where rendered plots are saved
+  fig.width = 7.252, # Default plot width
+  fig.height = 4, # Default plot height
+  fig.retina = 3 # For better plot resolution
+)
+```
+
+
+# Target population
+
+*General public 18 years old and older.*
+
+Surveys on health and fitness devices should prioritize individuals aged 18 and above because adults are usually the target users of these devices, given their responsibility for personal health guidance.  Adults are more likely to be concerned about their health conditions which makes them more susceptible to this device. By focusing on the adult population, surveys can gather more relevant and reliable survey responses.
+
+## Eligibility requirement:
+
+Ownership of health or activity tracker:
+
+**Do you own a fitness/health tracker device? I.e. apple watch, fitbit, samsung watch, whoop** 
+
+
+
+>Considering if a participant owns a fitness/health tracker device this will allow us to access if the participant belongs to our intended demographic market. With that information, we will know whether or not they have the purchasing power to buy a similar product. 
+Since this survey is targeting the general public, no specific strategy will be used to reach our target audience. 
+
+
+
+::: {#ConQuestions .sd-page}
+
+# Conjoint questions
+
+
+```{r}
+#| echo: false
+
+
+# Define the option vector
+html_buttons_bio <- c("Option 1", "Option 2", "Option 3")
+
+
+names(html_buttons_bio)[1] <- "*Patch*<br>
+    <img src= 'https://m.media-amazon.com/images/I/61Gz1GxEahL._AC_UL320_.jpg' width=100><br>
+    **Price**: $50 - $150<br>
+**Disposable**: Yes<br>
+**Battery Life**: 7 days<br>
+**Service Life**: 7 days<br>
+**Quantity**: 25 units<br>"
+names(html_buttons_bio)[2] <- "*Wristband*<br>
+    <img src='https://m.media-amazon.com/images/I/619to+LfvJL._AC_UY327_FMwebp_QL65_.jpg' width=100><br>
+**Price**: $150 - $250<br>
+**Disposable**: No<br>
+**Battery Life**: 36 hours <br>
+**Service Life**: 2 years<br>
+**Quantity**: 1 unit<br>"
+names(html_buttons_bio)[3] <- "*Ring*<br>
+    <img src = 'https://m.media-amazon.com/images/I/71ZbeV6rS-L._AC_UY327_FMwebp_QL65_.jpg' width=100><br>
+**Price**: $400<br>
+**Disposable**: No<br>
+**Battery Life**: up to 7 days<br>
+**Service Life**: 2 years<br>
+**Quantity**: 1 unit<br>"
+
+sd_question(
+  type   = 'mc_buttons',
+  id     = 'bio_type',
+  label  = "If these were your only options, which type of fitness/health tracker device would you choose?",
+  option = html_buttons_bio
+)
+
+
+```
+## Attribute Table
+
+| Attribute     | Levels                              | Unit/type   |
+|---------------|-------------------------------------|-------------|
+| Price         | $50-$150, $150-$250, $300-$400      | Dollars     |
+| Shape         | Patch, Wrist, Ring                  | Shape       |
+| Disposable    | Yes, No                             | Discrete    |
+| Battery Life  | 36 hours,up to 7 days, up to 14 days| Time        |
+| Service Life  | 7 days, 2 years                     | Time        |
+| Quantity      | 1, 25                               | Units       |
+
+
+:::
+
+
+# Survey Content
+
+
+::: {#welcome .sd-page}
+
+# Welcome
+
+Thank you for participating in our survey! We are a team dedicated to improving health and fitness tracking technologies, and your input will help us better understand the features and preferences that matter most to users like you. This survey aims to gather insights on your experiences with fitness trackers and how we can enhance them to meet your needs. Your feedback is invaluable in shaping future innovations, and we appreciate your time and honest responses!
+
+## About Fitness Trackers
+
+Fitness trackers are wearable devices that allow people to monitor and track activities and information related to fitness, such as weight loss and sweat analysis, stress, sleep and real-time nutrients monitoring. These devices can be stand-alone or integrated within a smartwatch. Typically, they connect to a mobile app, enabling users to manage information and utilize app features.
+
+### A Brief History
+
+*Mid-1960s:* The first functional fitness tracker was invented.
+
+*2012:* The first Fitbit was released.
+
+*2014:* The first Apple Watch was revealed.
+
+Your experiences and insights are critical to the continuous improvement of these devices, and we’re excited to hear from you!
+
+:::
+
+::: {#consent .sd-page}
+
+## Consent page
+
+This survey is being conducted by students at The George Washing University. We will not be collecting any identifying data, such as your name or address. The whole survey will take approximately 10 to 15 minutes to complete. Your participation is voluntary and you may stop the survey at any time.
+
+If you would like to participate, please answer the following questions:
+
+```{r}
+#| echo: false
+
+
+sd_question(
+  type  = 'mc',
+  id    = 'consent_age',
+  label = "I am age 18 or older",
+  option = c(
+    'Yes' = 'yes',
+    'No'  = 'no'
+  )
+)
+
+sd_question(
+  type  = 'mc',
+  id    = 'consent_understand',
+  label = "I have read and understand the above information",
+  option = c(
+    'Yes' = 'yes',
+    'No'  = 'no'
+  )
+)
+
+```
+:::
+
+::: {#eduInfo .sd-page}
+
+## Education information
+
+_Sleep Monitoring:_ Monitoring sleep patterns by tracking vital signs like heart rate, breathing, and movement during sleep cycles. 
+
+_Stress and Mood tracking:_ this feature checks your stress levels by tracking changes in your heart rate and sweat analysis. 
+
+_Real-time Nutrient Monitoring:_ checks key nutrients like vitamins, hydration, and blood sugar by analyzing your sweat or skin. It gives real-time updates on your health, so you can adjust your diet or hydration when needed.
+
+:::
+
+## Critical respondent information
+
+::: {#demographics .sd-page}
+
+### Demographics Page
+
+ We'd just like to ask just a few more questions about you which we will only use for analyzing our survey data.
+
+::: {style="width:500px; margin: 0 auto;"}
+
+```{r}
+#| echo: false
+
+# Construct the list of years
+
+
+sd_question(
+  type   = 'mc',
+  id     = 'generation',
+  label  = "What generation do you belong to?",
+  option = c("Baby Boomers" = 'baby_boomers',
+  "Gen X" = "gen_x", 
+  "Millennials" = 'millenial',
+  "Gen Z" = 'gen_z',
+  "Prefer not to say" = "prefer_not_say"
+)) 
+
+genders <- c(
+  "Male"                     = "male",
+  "Female"                   = "female", 
+  "Other"                    = "other", 
+  "Prefer not to say"        = "prefer_not_to_say"
+)
+
+sd_question(
+  type   = 'mc',
+  id     = 'gender',
+  label  = "What is your gender?",
+  option = genders
+)
+
+races <- c(
+  "White (Not of Hispanic or Latino origin)"  = "white",
+  "African American or Black"                 = "black",
+  "Asian"                                     = "asian",
+  "Hispanic or Latino"                        = "hispanic",
+  "American Indian or Alaska Native"          = "native_american",
+  "Native Hawaiian or Other Pacific Islander" = "pacific_islander",
+  "Prefer not to say"                         = "prefer_not_to_say"
+)
+
+sd_question(
+  type   = 'mc',
+  id     = 'race',
+  label  = "I identify my race as (select all that apply):",
+  option = races
+)
+
+
+incomes <- c(
+  "Less than $30,000"    = "less_than_30k",
+  "$30,000 to $49,999"   = "30k_to_49k",
+  "$50,000 to $69,999"   = "50k_to_69k",
+  "$70,000 to $79,999"   = "70k_to_79k",
+  "$80,000 to $89,999"   = "80k_to_89k",
+  "$90,000 to $99,999"   = "90k_to_99k",
+  "$100,000 to $149,999" = "100k_to_149k",
+  "$150,000 or more"     =  "150k_or_more",
+  "Prefer not to say"    = "prefer_not_to_say"
+)
+
+sd_question(
+  type   = 'mc',
+  id     = 'income',
+  label  = "What is your annual household income (from all sources) before taxes and other deductions from pay?",
+  option = incomes
+)
+
+sd_question(
+  type  = "textarea",
+  id    = "feedback",
+  label = 
+  "Please let us know if you have any other thoughts or feedback on this survey.
+  
+  Your feedback will help us make future improvements :)"
+)
+
+```
+
+:::
+
+
+
+## Other questions
+
+```{r}
+#| echo: false
+
+
+sd_question(
+  type  = 'mc',
+  id    = 'doc_visit',
+  label = "Within the last 5 years, how many times have you visited your primary doctor?",
+  option = c(
+    'Five times or more' = '5', 
+    'Four times' = '4', 
+    'Three times' = '3', 
+    'Twice' = '2',
+    'Once' = '1',
+    'None'  = 'no'
+  )
+)
+
+
+sd_question(
+  type  = 'mc',
+  id    = 'h&f_monitor',
+  label = "Do you monitor your health and fitness?",
+  option = c(
+    'Yes' = 'yes',
+    'No'  = 'no'
+  )
+)
+
+sd_question(
+  type  = 'mc',
+  id    = 'h&f_goals',
+  label = "What goals are you trying to achieve when tracking your health and fitness?",
+  option = c(
+    'Lose weight' = 'weight', 
+    'Prevent Diseases' = 'disease_prev', 
+    'Reduce Stress' = 'red_stress', 
+    'Other (Please Specify)' = 'other'
+  )
+)
+ 
+```
+ > Other responses will open a short response field in the actual survey. 
+
+```{r}
+#| echo: false
+
+sd_question(
+  type  = 'mc',
+  id    = 'h&f_monitor_future',
+  label = "If you attain your health/fitness goals, would you be interested in continuing monitoring your health/fitness information in the future?",
+  option = c(
+    'Yes' = 'yes',
+    'No'  = 'no',
+    'I do not know' = 'idk'
+  )
+)
+
+sd_question(
+  type  = 'mc',
+  id    = 'sharing_data',
+  label = "Are you interested in sharing health/fitness information with peers?",
+  option = c(
+    'Not interested' = 'no', 
+    'Low interest' = 'low', 
+    'Very interested' = 'very'
+  )
+)
+
+sd_question(
+  type  = 'mc',
+  id    = 'changes_wellness',
+  label = "How often do you actively make changes to improve your overall wellness (e.g., sleep, nutrition, stress management)?",
+  option = c(
+    'Frequently' = 'frequently', 
+    'Occasionally' = 'occasionally', 
+    'Rarely' = 'rarely',
+   'Never' = 'never'
+
+  )
+)
+
+sd_question(
+  type  = 'mc',
+  id    = 'wearable_device',
+  label = "Have you ever used a wearable device (e.g., smartwatch, fitness tracker, or health patch) to track your health?",
+  option = c(
+     'Yes' = 'yes',
+    'No'  = 'no',
+    'I plan to in the future' = 'future'
+
+  )
+)
+
+sd_question(
+  type  = 'mc',
+  id    = 'device_type',
+  label = "When choosing a fitness/health tracker device, what shape would you prefer?",
+  option = c(
+    'Wrist Band' = 'wrist', 
+    'Patch' = 'patch', 
+    'Ring' = 'ring'
+  )
+)
+
+sd_question(
+  type  = 'mc',
+  id    = 'prior_sleep',
+  label = "How much do you prioritize Sleep monitoring?",
+  option = c(
+    'Not interested' = 'no', 
+    'Low interest' = 'low', 
+    'Mid interest' = 'mid',
+    'High interest' = 'high'
+  )
+)
+
+sd_question(
+  type  = 'mc',
+  id    = 'prior_stress',
+  label = "How much do you prioritize Stress and Mood tracking?",
+  option = c(
+    'Not interested' = 'no', 
+    'Low interest' = 'low', 
+    'Mid interest' = 'mid',
+    'High interest' = 'high'
+  )
+)
+
+
+sd_question(
+  type  = 'mc',
+  id    = 'prior_nutrients',
+  label = "How much do you prioritize nutrient monitoring?",
+  option = c(
+    'Not interested' = 'no', 
+    'Low interest' = 'low', 
+    'Mid interest' = 'mid',
+    'High interest' = 'high'
+  )
+)
+
+
+sd_question(
+  type  = 'mc',
+  id    = 'price_range',
+  label = "What price range are you willing to pay for this device?",
+  option = c(
+    '$50 - $150' = '50-150', 
+    '$150 - $250' = '150-250', 
+    '$250 - $400 ' = '250-400',
+    '>$400' = '400more'
+  )
+)
+
+
+```
+
+# Attribution
+
+We had one meeting on 9/29 from 3:15-6:15 pm. Then on 9/30 - we had a meeting from 11:15am  - 12:45 pm and the evening of 9/30 we met from 9:15 pm-10:30 pm to work on it together.
+
+# Disclaimer
+
+## Use of AI
+
+> Artificial Intelligence tools were used in this report to aid with the proper formatting of tables and images.
+
+
+
